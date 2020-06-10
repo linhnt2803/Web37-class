@@ -1,6 +1,13 @@
+const model = require('./model')
+
 const handlers = {
-  findMany(req, res, next) {
-    throw new Error('Not yet support!')
+  async findMany(req, res, next) {
+    try {
+      let items = await model.find({ })
+      res.json(items)
+    } catch(err) {
+      next(err)
+    }
   },
   findOne(req, res, next) {
     throw new Error('Not yet support!')
