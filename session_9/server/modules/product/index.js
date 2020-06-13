@@ -9,17 +9,58 @@ const handlers = {
       next(err)
     }
   },
-  findOne(req, res, next) {
-    throw new Error('Not yet support!')
+  async findOne(req, res, next) {
+    try {
+      let id = req.params.id
+      let item = await model.findById(id)
+
+      res.json(item)
+    } catch(err) {
+      next(err)
+    }
   },
-  create(req, res, next) {
-    throw new Error('Not yet support!')
+  async create(req, res, next) {
+    try {
+      let data = req.body
+      let item = await model.create(data)
+
+      res.json(item)
+    } catch(err) {
+      next(err)
+    }
   },
-  update(req, res, next) {
-    throw new Error('Not yet support!')
+  async update(req, res, next) {
+    try {
+      let data = req.body
+      let id = data._id
+
+      if(!id) {
+        throw new Error('Missing item id!')
+      }
+
+      let item = await model.findByIdAndUpdate(
+        id,
+        data,
+        {
+          new: true
+        }
+      )
+
+      res.json(item)
+    } catch(err) {
+      next(err)
+    }
   },
-  delete(req, res, next) {
-    throw new Error('Not yet support!')
+  async delete(req, res, next) {
+    try {
+      let id = req.params.id
+
+      let item = await model.findByIdAndDelete(id)
+
+      res.json(item)
+    } catch(err) {
+      next(err)
+    }
   }
 }
 

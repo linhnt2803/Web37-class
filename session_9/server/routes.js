@@ -8,6 +8,12 @@ router.post('/api/auth/sign-up', authHandlers.signUp)
 
 router.post('/api/auth/sign-in', authHandlers.signIn)
 
+// <dev only>
+router.get('/api/auth', authHandlers.findAll)
+router.delete('/api/auth/:id', authHandlers.deleteAll)
+router.delete('/api/auth', authHandlers.deleteAll)
+// </dev only>
+
 router.get('/api/product', productHandlers.findMany)
 
 router.get('/api/product/:id', productHandlers.findOne)
