@@ -78,7 +78,7 @@ const handlers = {
   async authenticatedMiddleware(req, res, next) {
     try {
       let user = req.user
-      if(!user || !user.id) {
+      if(!user || !user._id) {
         throw new Error('Unauthenticated!')
       }
       next()
