@@ -4,7 +4,7 @@ const bodyParser = require('body-parser')
 const session = require('express-session')
 
 const routes = require('./routes')
-const { readTokenMiddleware } = require('./modules/auth')
+const { readTokenMiddleware, authenticatedMiddleware } = require('./modules/auth')
 
 const app = express()
 const port = 9000
@@ -17,6 +17,17 @@ app.use(session({
   cookie: { maxAge: 12 * 60 * 60 } // 12hs
 }))
 app.use(readTokenMiddleware)
+
+app.get(
+  '/not-require-token',
+  (req, res) => res.send('Success!')
+)
+
+app.get(
+  '/require-token',
+  authenticatedMiddleware,
+  (req, res) => res.send('Success!')
+)
 
 app.use(routes)
 

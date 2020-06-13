@@ -65,18 +65,26 @@ const handlers = {
   },
   async readTokenMiddleware(req, res, next) {
     try {
-      let accessToken = req.header.authorization
+      let accessToken = req.headers.authorization
       if(accessToken) {
         let userData = verifyToken(accessToken)
-        req.session.user = userData
-      }
+        req.user = userData
+      }   
       next()
     } catch(err) {
       next(new Error('Invalid access token!'))
     }
   },
   async authenticatedMiddleware(req, res, next) {
-
+    try {
+      let user = req.user
+      if(!user || !user.id) {
+        throw new Error('Unauthenticated!')
+      }
+      next()
+    } catch(err) {
+      next(err)
+    }
   },
 
   // dev only
