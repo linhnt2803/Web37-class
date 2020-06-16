@@ -4,10 +4,10 @@ const bodyParser = require('body-parser')
 const session = require('express-session')
 
 const routes = require('./routes')
-const { readTokenMiddleware, authenticatedMiddleware } = require('./modules/auth')
+const { readTokenMiddleware } = require('./modules/auth')
 
 const app = express()
-const port = 9000
+const port = process.env.PORT || 9000
 
 app.use(bodyParser.json())
 app.use(session({
@@ -18,16 +18,16 @@ app.use(session({
 }))
 app.use(readTokenMiddleware)
 
-app.get(
-  '/not-require-token',
-  (req, res) => res.send('Success!')
-)
+// app.get(
+//   '/not-require-token',
+//   (req, res) => res.send('Success!')
+// )
 
-app.get(
-  '/require-token',
-  authenticatedMiddleware,
-  (req, res) => res.send('Success!')
-)
+// app.get(
+//   '/require-token',
+//   authenticatedMiddleware,
+//   (req, res) => res.send('Success!')
+// )
 
 app.use(routes)
 

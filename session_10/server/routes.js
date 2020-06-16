@@ -18,10 +18,13 @@ router.get('/api/product', productHandlers.findMany)
 
 router.get('/api/product/:id', productHandlers.findOne)
 
-router.post('/api/product', productHandlers.create)
+router.post('/api/product'
+  , authHandlers.authenticatedMiddleware, productHandlers.create)
 
-router.put('/api/product', productHandlers.update)
+router.put('/api/product'
+  , authHandlers.authenticatedMiddleware, productHandlers.update)
 
-router.delete('/api/product/:id', productHandlers.delete)
+router.delete('/api/product/:id'
+  , authHandlers.authenticatedMiddleware, productHandlers.delete)
 
 module.exports = router
