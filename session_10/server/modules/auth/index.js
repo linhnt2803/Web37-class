@@ -40,6 +40,7 @@ const handlers = {
       next(err)
     }
   },
+  // TODO: remove
   async signUp(req, res, next) {
     try {
       let data = req.body
