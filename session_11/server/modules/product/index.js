@@ -3,7 +3,10 @@ const model = require('./model')
 const handlers = {
   async findMany(req, res, next) {
     try {
-      let items = await model.find({ })
+      let items = await model
+        .find({ })
+        .populate('categories', 'title')
+
       res.json(items)
     } catch(err) {
       next(err)
@@ -12,7 +15,9 @@ const handlers = {
   async findOne(req, res, next) {
     try {
       let id = req.params.id
-      let item = await model.findById(id)
+      let item = await model
+        .findById(id)
+        .populate('categories', 'title')
 
       res.json(item)
     } catch(err) {
