@@ -1,0 +1,23 @@
+@import './variables.scss';
+@import './mixins.scss';
+
+.parent {
+  padding: $padding-5;
+  border: 1px solid black;
+  .child-1 {
+    @include text($font-size-1, $line-height-1, 700, #f2f2f2);
+  }
+  .child-2 {
+    @include text($font-size-5, $line-height-5);
+  }
+}
+
+
+
+
+// demo using file image
+
+// body {
+//   background: url('../assets/img/anh-1.png') center center no-repeat;
+//   background-size: cover;
+// }
