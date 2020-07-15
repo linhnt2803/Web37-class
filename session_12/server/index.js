@@ -2,6 +2,7 @@ require('./connect-mongo')
 const express = require('express')
 const bodyParser = require('body-parser')
 const session = require('express-session')
+const cors = require('./cors')
 
 const routes = require('./routes')
 const { readTokenMiddleware } = require('./modules/auth')
@@ -9,6 +10,7 @@ const { readTokenMiddleware } = require('./modules/auth')
 const app = express()
 const port = process.env.PORT || 9000
 
+app.use(cors)
 app.use(bodyParser.json())
 app.use(session({
   secret: 'my secret string',
