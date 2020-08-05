@@ -3,7 +3,7 @@ import CButton from '../../pieces/Button'
 
 class TableControls extends Component {
   constructor(props = {
-    count, pageIndex, pageSize, setPageConfig, callApiList
+    count, pageIndex, pageSize, setPageConfig
   }) {
     super(props)
 
@@ -32,7 +32,8 @@ class TableControls extends Component {
       && newPageIndex <= maxPage) {
       
       this.props.setPageConfig({ pageIndex: newPageIndex })
-      setTimeout(this.props.callApiList, 1)
+      // this.props.callApiList()
+      // setTimeout(this.props.callApiList, 10)
     }
   }
 

@@ -34,6 +34,7 @@ const handlers = {
         conditions.title = new RegExp(search, 'i')
       }
       if(categoryId) {
+        console.log('category', categoryId)
         conditions.categories = mongoose.Types.ObjectId(categoryId)
       }
       
